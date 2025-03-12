@@ -83,7 +83,7 @@ function addRiskItem(riskName, riskLevel, department) {
 // Example Test Case
 addRiskItem("Market Fluctuations", "High", "Finance");
 
-// Tsk 4 - Categorizing Risk
+// Tsk 4 - Categorizing risk
 // Select the riskDashboard container and the form
 const riskDashboard = document.getElementById('riskDashboard');
 const riskForm = document.getElementById('riskForm');
@@ -147,3 +147,43 @@ riskForm.addEventListener('submit', function(event) {
 // Example test cases to add risks programmatically
 addRiskItem("Cybersecurity Threat", "High", "IT");
 addRiskItem("HR Compliance Issue", "Low", "Human Resources");
+
+// Task 5 - Applying mass updates
+// Cache DOM elements
+const riskItemsContainer = document.getElementById('riskItemsContainer');
+const increaseRiskButton = document.getElementById('increaseRiskButton');
+const riskForm = document.getElementById('riskForm');
+const riskNameInput = document.getElementById('riskName');
+const riskLevelInput = document.getElementById('riskLevel');
+const riskDepartmentInput = document.getElementById('riskDepartment');
+
+// Function to add a new risk item
+function addRiskItem(name, level, department) {
+  const riskCard = document.createElement('div');
+  riskCard.classList.add('riskCard');
+  
+  // Set background color based on risk level
+  switch(level) {
+    case 'Low':
+      riskCard.style.backgroundColor = 'green';
+      break;
+    case 'Medium':
+      riskCard.style.backgroundColor = 'yellow';
+      break;
+    case 'High':
+      riskCard.style.backgroundColor = 'red';
+      break;
+  }
+
+  // Add content to the risk card
+  const riskName = document.createElement('h2');
+  riskName.textContent = name;
+
+  const riskLevel = document.createElement('p');
+  riskLevel.textContent = `Level: ${level}`;
+
+  const riskDepartment = document.createElement('p');
+  riskDepartment.textContent = `Department: ${department}`;
+
+  const resolveButton = document.createElement('button');
+  resolveButton.textContent
