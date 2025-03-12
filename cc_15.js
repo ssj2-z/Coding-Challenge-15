@@ -187,3 +187,58 @@ function addRiskItem(name, level, department) {
 
   const resolveButton = document.createElement('button');
   resolveButton.textContent
+
+  // Task 6 - Managing event propagation
+// Cache DOM elements
+const riskItemsContainer = document.getElementById('riskItemsContainer');
+
+// Function to add a new risk item
+function addRiskItem(name, level, department) {
+  const riskCard = document.createElement('div');
+  riskCard.classList.add('riskCard');
+  
+  // Set background color based on risk level
+  switch(level) {
+    case 'Low':
+      riskCard.style.backgroundColor = 'green';
+      break;
+    case 'Medium':
+      riskCard.style.backgroundColor = 'yellow';
+      break;
+    case 'High':
+      riskCard.style.backgroundColor = 'red';
+      break;
+  }
+
+  // Add content to the risk card
+  const riskName = document.createElement('h2');
+  riskName.textContent = name;
+
+  const riskLevel = document.createElement('p');
+  riskLevel.textContent = `Level: ${level}`;
+
+  const riskDepartment = document.createElement('p');
+  riskDepartment.textContent = `Department: ${department}`;
+
+  const resolveButton = document.createElement('button');
+  resolveButton.textContent = 'Resolve';
+  
+  // Event listener for resolve button
+  resolveButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent click event from propagating to the container
+    riskItemsContainer.removeChild(riskCard);
+  });
+
+  // Append elements to risk card
+  riskCard.appendChild(riskName);
+  riskCard.appendChild(riskLevel);
+  riskCard.appendChild(riskDepartment);
+  riskCard.appendChild(resolveButton);
+
+  // Append risk card to the container
+  riskItemsContainer.appendChild(riskCard);
+}
+
+// Example Test Case: Adding a risk item
+addRiskItem('Cybersecurity Threat', 'High', 'IT');
+}
