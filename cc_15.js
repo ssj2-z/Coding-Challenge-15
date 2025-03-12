@@ -82,3 +82,68 @@ function addRiskItem(riskName, riskLevel, department) {
   
 // Example Test Case
 addRiskItem("Market Fluctuations", "High", "Finance");
+
+// Tsk 4 - Categorizing Risk
+// Select the riskDashboard container and the form
+const riskDashboard = document.getElementById('riskDashboard');
+const riskForm = document.getElementById('riskForm');
+
+// Function to add a new risk item
+function addRiskItem(riskName, riskLevel, department) {
+    // Create a new div element for the risk card
+    const riskCard = document.createElement('div');
+    riskCard.classList.add('riskCard');
+
+    // Apply different background colors based on the risk level
+    if (riskLevel === 'Low') {
+        riskCard.style.backgroundColor = 'green';
+    } else if (riskLevel === 'Medium') {
+        riskCard.style.backgroundColor = 'yellow';
+    } else if (riskLevel === 'High') {
+        riskCard.style.backgroundColor = 'red';
+    }
+
+    // Create and add content to the risk card
+    const nameElement = document.createElement('h3');
+    nameElement.textContent = riskName;
+    riskCard.appendChild(nameElement);
+
+    const levelElement = document.createElement('p');
+    levelElement.textContent = `Risk Level: ${riskLevel}`;
+    riskCard.appendChild(levelElement);
+
+    const departmentElement = document.createElement('p');
+    departmentElement.textContent = `Department: ${department}`;
+    riskCard.appendChild(departmentElement);
+
+    // Create and add "Resolve" button to the card
+    const resolveButton = document.createElement('button');
+    resolveButton.textContent = 'Resolve';
+    resolveButton.addEventListener('click', () => {
+        riskDashboard.removeChild(riskCard); // Remove the card when resolved
+    });
+    riskCard.appendChild(resolveButton);
+
+    // Append the risk card to the dashboard
+    riskDashboard.appendChild(riskCard);
+}
+
+// Event listener for form submission
+riskForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from submitting
+
+    // Get values from the form
+    const riskName = document.getElementById('riskName').value;
+    const riskLevel = document.getElementById('riskLevel').value;
+    const department = document.getElementById('department').value;
+
+    // Add the new risk item to the dashboard
+    addRiskItem(riskName, riskLevel, department);
+
+    // Clear the form fields after submitting
+    riskForm.reset();
+});
+
+// Example test cases to add risks programmatically
+addRiskItem("Cybersecurity Threat", "High", "IT");
+addRiskItem("HR Compliance Issue", "Low", "Human Resources");
