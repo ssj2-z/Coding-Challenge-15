@@ -41,3 +41,44 @@ document.addEventListener('DOMContentLoaded', () => {
   addRiskItem('Data Breach', 'High', 'IT'); // Test case 1
   addRiskItem('Supply Chain Disruption', 'Medium', 'Operations'); // Test case 2
 });
+
+// Task 3 - Removing risk items
+function addRiskItem(riskName, riskLevel, department) {
+    const riskDashboard = document.getElementById('riskDashboard');
+  
+    // Create a new div element to represent the risk card
+    const riskCard = document.createElement('div');
+    riskCard.classList.add('riskCard');
+  
+    // Create elements for risk name, level, and department
+    const riskNameElem = document.createElement('h3');
+    riskNameElem.textContent = riskName;
+  
+    const riskLevelElem = document.createElement('p');
+    riskLevelElem.textContent = `Risk Level: ${riskLevel}`;
+  
+    const departmentElem = document.createElement('p');
+    departmentElem.textContent = `Department: ${department}`;
+  
+    // Create the Resolve button
+    const resolveButton = document.createElement('button');
+    resolveButton.textContent = 'Resolve';
+    resolveButton.classList.add('resolveButton');
+  
+    // Add an event listener to remove the card when Resolve button is clicked
+    resolveButton.addEventListener('click', () => {
+        riskDashboard.removeChild(riskCard);
+    });
+  
+    // Append elements to the risk card
+    riskCard.appendChild(riskNameElem);
+    riskCard.appendChild(riskLevelElem);
+    riskCard.appendChild(departmentElem);
+    riskCard.appendChild(resolveButton);
+  
+    // Append the risk card to the dashboard
+    riskDashboard.appendChild(riskCard);
+}
+  
+// Example Test Case
+addRiskItem("Market Fluctuations", "High", "Finance");
