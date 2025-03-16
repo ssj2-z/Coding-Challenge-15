@@ -86,7 +86,7 @@ addRiskItem("Market Fluctuations", "High", "Finance");
 // Tsk 4 - Categorizing risk
 // Select the riskDashboard container and the form
 const riskDashboard = document.getElementById('riskDashboard');
-const riskForm = document.getElementById('riskForm');
+const riskForm = document.getElementById(`riskForm`);
 
 // Function to add a new risk item
 function addRiskItem(riskName, riskLevel, department) {
@@ -152,7 +152,6 @@ addRiskItem("HR Compliance Issue", "Low", "Human Resources");
 // Cache DOM elements
 const riskItemsContainer = document.getElementById('riskItemsContainer');
 const increaseRiskButton = document.getElementById('increaseRiskButton');
-const riskForm = document.getElementById('riskForm');
 const riskNameInput = document.getElementById('riskName');
 const riskLevelInput = document.getElementById('riskLevel');
 const riskDepartmentInput = document.getElementById('riskDepartment');
